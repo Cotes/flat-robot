@@ -6,24 +6,24 @@ import {Flat} from "../../domain/flat/flat.model";
 
 export class SearchService {
 
+  private flatRepository: FlatRepository;
+  private flatProvider: FlatProvider;
+
   constructor(
     private flatRepository: FlatRepository,
     private flatProvider: FlatProvider
-  ) {}
+  ) {
+    this.flatRepository = flatRepository;
+    this.flatProvider = flatProvider;
+  }
 
   public async execute() {
     const flats = await this.flatProvider.getFlats();
-    let newFlats: Flat[] = [];
-    flats.forEach(async (flat: Flat) => {
-      const storedFlat = await this.flatRepository.fromProviderId(flat.providerId)
-      if (storedFlat) {
-        // Flat already exists in DB
-        return;
-      }
-      // New flat!
-      this.flatRepository.save(flat);
-      newFlats.push(flat);
-    });
+    const ids = flats.map(flat => flat.providerId);
+    const storedFlats = await this.flatRepository.manyFromProviderId(ids);
+    const newFlats = flats.filter((flat: Flat) =>
+      !storedFlats.some((storedFlat: Flat) => storedFlat.providerId === flat.providerId));
+    this.flatRepository.saveMany(newFlats);
     return newFlats;
   }
 }
