@@ -13,15 +13,17 @@ export class SearchService {
 
   public async execute() {
     const flats = this.flatProvider.getFlats();
+    let newFlats: Flat[] = [];
     flats.forEach(async (flat: Flat) => {
       const storedFlat = await this.flatRepository.fromProviderId(flat.providerId)
       if (storedFlat) {
         // Flat already exists in DB
         return;
       }
-
       // New flat!
       this.flatRepository.save(flat);
-    })
+      newFlats.push(flat);
+    });
+    return newFlats;
   }
 }
