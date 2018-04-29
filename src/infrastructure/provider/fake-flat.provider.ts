@@ -17,7 +17,7 @@ export class FakeFlatProvider implements FlatProvider {
     ];
   }
 
-  getFlats(): Flat[] {
+  getFlats(): Promise<Flat[]> {
     return this.flats;
   }
 

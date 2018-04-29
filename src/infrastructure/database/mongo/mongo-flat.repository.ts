@@ -5,10 +5,17 @@ import {FlatRepository} from "../../../domain/flat/flat.repository";
 
 export class MongoFlatRepository implements FlatRepository {
 
-  constructor() {
-  }
+  constructor() {}
 
   save(flat: Flat) {
+
+  }
+
+  fromProviderId(providerId: number): Promise<Flat> {
+
+  }
+
+  all(): Promise<Flat[]> {
 
   }
 }

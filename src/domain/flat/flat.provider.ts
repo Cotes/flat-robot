@@ -3,5 +3,5 @@
 import {Flat} from "./flat.model";
 
 export interface FlatProvider {
-  getFlats(): Flat[];
+  getFlats(): Promise<Flat[]>;
 }

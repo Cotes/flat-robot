@@ -12,7 +12,7 @@ export class SearchService {
   ) {}
 
   public async execute() {
-    const flats = this.flatProvider.getFlats();
+    const flats = await this.flatProvider.getFlats();
     let newFlats: Flat[] = [];
     flats.forEach(async (flat: Flat) => {
       const storedFlat = await this.flatRepository.fromProviderId(flat.providerId)
