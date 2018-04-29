@@ -3,7 +3,7 @@
 export class Flat {
 
   constructor(
-    private providerId: number,
+    public providerId: number,
     private description: string,
     private features: any,
     private images: string[]
