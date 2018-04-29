@@ -1,6 +1,6 @@
 import {Get, Controller} from '@nestjs/common';
 import * as rc from 'typed-rest-client/HttpClient';
-import {Flat} from "./domain/flat.model";
+import {Flat} from "../../domain/flat/flat.model";
 
 
 @Controller()
