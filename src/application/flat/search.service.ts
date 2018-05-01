@@ -10,11 +10,11 @@ export class SearchService {
   private flatProvider: FlatProvider;
 
   constructor(
-    private flatRepository: FlatRepository,
-    private flatProvider: FlatProvider
+    aFlatRepository: FlatRepository,
+    aFlatProvider: FlatProvider
   ) {
-    this.flatRepository = flatRepository;
-    this.flatProvider = flatProvider;
+    this.flatRepository = aFlatRepository;
+    this.flatProvider = aFlatProvider;
   }
 
   public async execute() {

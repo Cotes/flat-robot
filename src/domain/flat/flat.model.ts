@@ -8,18 +8,22 @@ export class Flat {
   private images: string[];
 
   constructor(
-    public providerId: number,
-    private description: string,
-    private features: any,
-    private images: string[]
+    aProviderId: number,
+    aDescription: string,
+    someFeatures: any,
+    someImages: string[]
   ) {
-    this.providerId = providerId;
-    this.description = description;
-    this.features = features;
-    this.images = images;
+    this.providerId = aProviderId;
+    this.description = aDescription;
+    this.features = someFeatures;
+    this.images = someImages;
   }
 
   static create(providerId: number, description: string, features: any, images: string[]) {
     return new Flat(providerId, description, features, images);
+  }
+
+  static createFromObject(obj: any) {
+    return new Flat(obj.providerId, obj.description, obj.features, obj.images);
   }
 }

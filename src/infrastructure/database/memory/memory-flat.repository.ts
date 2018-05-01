@@ -9,12 +9,18 @@ export class MemoryFlatRepository implements FlatRepository {
 
   constructor() {}
 
-  save(flat: Flat) {
-    this.flats.push(flat);
+  save(flat: Flat): Promise<boolean> {
+    return new Promise((resolve,) => {
+      this.flats.push(flat);
+      resolve(true);
+    });
   }
 
-  saveMany(flats: Flat[]) {
-    this.flats = this.flats.concat(flats);
+  saveMany(flats: Flat[]): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.flats = this.flats.concat(flats);
+      resolve(true);
+    });
   }
 
   fromProviderId(providerId: number): Promise<Flat> {
